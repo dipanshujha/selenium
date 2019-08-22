@@ -24,13 +24,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class form_test {
 
 	public static void main(String[] args) throws InterruptedException, IOException {
-
-		try {
-			//date definition
+		//date definition
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_yy_hh_mm_ss");
 			LocalDateTime now = LocalDateTime.now();
 			String curr_date = dtf.format(now);
-			
+
+		try {
 			//driver definition
 			System.setProperty("webdriver.chrome.driver", "C://Users//admin//workspace//Auto/chromedriver.exe");
 			WebDriver driver = new ChromeDriver();
@@ -86,6 +85,8 @@ public class form_test {
 				File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 				// Dynamic dates will be appended to filename as curr_date which has been defined at top.
 				FileUtils.copyFile(screenshotFile, new File("D:\\SoftwareTestingMaterial" + curr_date + ".png"));
+				System.out.println("Screenshot captured");
+
 			} 
 			// Else block will be executed when IF condition fails, means the title of web page is not intended.
 			else {
@@ -93,7 +94,7 @@ public class form_test {
 				driver.quit();
 			}
 		} catch (NoSuchElementException e) {
-			System.out.println("element exception Called " + e);
+			System.out.println("Element exception Called " + e);
 		}
 	}
 }
