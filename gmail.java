@@ -20,6 +20,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class script {
 
 	public static void main(String[] args) throws InterruptedException, IOException {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_yy_hh_mm_ss");
+		LocalDateTime now = LocalDateTime.now();
+		String curr_date = dtf.format(now);
 		System.setProperty("webdriver.chrome.driver", "C://Users//admin//workspace//Auto/chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 		String baseUrl = "https://accounts.google.com/signin/v2/identifier?flowName=GlifWebSignIn&flowEntry=ServiceLogin";
@@ -48,7 +51,7 @@ public class script {
 					compose_btn.click();
 					Thread.sleep(3000);
 					WebElement to = driver.findElement(By.xpath("//textarea[@name='to']"));
-					to.sendKeys("reciever@gmail.com");
+					to.sendKeys("reciever@email.com");
 					WebElement sub = driver.findElement(By.xpath("//input[@name='subjectbox']"));
 					sub.clear();
 					sub.sendKeys("Subject");
@@ -67,12 +70,9 @@ public class script {
 		}
 
 		catch (Exception e) {
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_yy_hh_mm_ss");
-			LocalDateTime now = LocalDateTime.now();
-			String curr_date = dtf.format(now);
 			File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 			FileUtils.copyFile(screenshotFile, new File("D:\\Selenium_ss\\Errors\\error_"+curr_date+".png"));
-
+			System.out.println("Screenshot captured");
 			System.out.println("element exception Called " + e);
 		}
 	}
