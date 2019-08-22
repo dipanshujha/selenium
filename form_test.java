@@ -35,7 +35,7 @@ public class form_test {
 			System.setProperty("webdriver.chrome.driver", "C://Users//admin//workspace//Auto/chromedriver.exe");
 			WebDriver driver = new ChromeDriver();
 
-			//wait call and define time for implicit wait
+			//wait call and define time for explicit wait
 			WebDriverWait wait = new WebDriverWait(driver,20);
 			
 			//URL definition
@@ -51,9 +51,8 @@ public class form_test {
 
 				// Cookie button will be clicked as accept to avoid further crashes.
 				wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("cookie_action_close_header")));
-				
-				// First name
 				driver.findElement(By.id("cookie_action_close_header")).click();
+				// First name
 				driver.findElement(By.xpath("//input[@name='firstname']")).sendKeys("Dipanshu");
 				// Last name
 				WebElement lname = driver.findElement(By.xpath("//input[@id='lastname']"));
